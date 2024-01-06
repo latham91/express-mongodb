@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const dbConnect = require("./config/dbConnect");
 
 // Route imports
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/health", (req, res) => {
 });
 
 // Route middleware
+app.use("/api/v1/users", userRoutes);
 
 PORT = process.env.PORT;
 
