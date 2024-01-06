@@ -1,0 +1,13 @@
+{
+    "name": "express-mongodb",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "dev": "nodemon index.js",
+        "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "Aaron Latham",
+    "license": "ISC"
+}
