@@ -3,6 +3,23 @@ const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 const { signupValidation, loginValidation } = require("../libs/userValidation");
 
+// Get all users controller
+// GET /api/v1/users
+// Public access
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find({}, "name createdAt");
+
+        if (!users) {
+            return res.status(404).json({ success: false, status: 404, message: "No users found" });
+        }
+
+        return res.status(200).json({ success: true, status: 200, count: users.length, users });
+    } catch (err) {
+        return res.status(500).json({ success: false, status: 500, message: "Server error", error: err });
+    }
+};
+
 // User signup controller
 // POST /api/v1/users/signup
 // Public access
