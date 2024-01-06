@@ -80,7 +80,7 @@ exports.loginUser = async (req, res) => {
         const token = JWT.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
         // Set cookie
-        res.cookie("auth-token", token, { httpOnly: true, maxAge: 3600000 });
+        res.cookie("authToken", token, { httpOnly: true, maxAge: 3600000 });
 
         return res.status(200).json({ success: true, status: 200, message: `User ${user.name} has logged in!` });
     } catch (err) {

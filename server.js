@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const morgan = require("morgan");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const dbConnect = require("./config/dbConnect");
 
 // Route imports
@@ -12,6 +14,9 @@ const app = express();
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
 
+// Enable CORS
+app.use(cors({ credentials: true }));
+
 // Connect to MongoDB
 dbConnect();
 
@@ -20,8 +25,9 @@ if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 
-// JSON body parser
+// Body and cookie parser
 app.use(express.json());
+app.use(cookieParser());
 
 // Health check
 app.use("/health", (req, res) => {
